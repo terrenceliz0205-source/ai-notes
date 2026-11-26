@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#EEEBE5">
+  <title>解題筆記</title>
+
+  <!-- 字體：Noto Sans TC（中文 UI）、Plus Jakarta Sans（英數/標題）、LXGW WenKai TC（手寫風格） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Sans+TC:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-mode="draw" data-view="notebook">
+
+  <!-- ===================== 圖示（手繪線條風格 inline SVG） ===================== -->
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="i-logo" viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l1-4L16.2 4.8a2.1 2.1 0 0 1 3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/><path d="M13 20h7"/></symbol>
+    <symbol id="i-eraser" viewBox="0 0 24 24"><path d="M9 20h11"/><path d="M5.3 15.7l9.9-9.9a2 2 0 0 1 2.8 0l2.2 2.2a2 2 0 0 1 0 2.8L12.3 18.7a4 4 0 0 1-2.8 1.3H8.6a4 4 0 0 1-2.8-1.2l-.5-.5a2 2 0 0 1 0-2.6z"/><path d="M9.5 11.5l5 5"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8.5 16v-4"/><path d="M12.5 16V8"/><path d="M16.5 16v-6"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3.5"/><path d="M7.5 8L12 3.5 16.5 8"/><path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M18.5 15l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11"/><path d="M17.5 6.5l-11 11"/></symbol>
+    <symbol id="i-dash" viewBox="0 0 24 24"><path d="M8 12h8"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path d="M10.3 4.2L2.6 17.5a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5"/><path d="M12 16.5h.01"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2V16h5v-.2c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v2"/><path d="M20 16v2a2 2 0 0 1-2 2h-2"/><path d="M8 20H6a2 2 0 0 1-2-2v-2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+  </svg>
+
+  <div class="app">
+
+    <!-- ============================================================
+         畫面一～四：筆記本（筆記模式 / 框選 / 確認算式 / 錯誤標註）
+         ============================================================ -->
+    <section class="view view-notebook" id="viewNotebook">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="app-icon"><svg class="icon"><use href="#i-logo"/></svg></div>
+          <div class="app-title">
+            <div class="app-name">解題筆記</div>
+            <nav class="breadcrumb" aria-label="目前位置">
+              <span>數學</span><span class="sep">›</span><span>一元一次方程式</span>
+            </nav>
+          </div>
+        </div>
+
+        <div class="topbar-center">
+          <span class="lesson"><b>第 3 課</b>　移項法則</span>
+          <span class="save-status" id="saveStatus" data-state="saved">
+            <i class="save-dot"></i><span id="saveText">已自動儲存</span>
+          </span>
+        </div>
+
+        <div class="topbar-right">
+          <div class="ai-toggle">
+            <span id="aiToggleLabel">AI 標註</span>
+            <button class="switch is-on" id="aiToggle" role="switch" aria-checked="true" aria-labelledby="aiToggleLabel"><i></i></button>
+          </div>
+          <button class="btn-icon" id="btnAnalysis" aria-label="學習分析" title="學習分析">
+            <svg class="icon"><use href="#i-chart"/></svg>
+          </button>
+          <button class="btn-icon" id="btnShare" aria-label="分享" title="分享">
+            <svg class="icon"><use href="#i-share"/></svg>
+          </button>
+          <button class="btn btn-primary" id="btnAICheck">
+            <svg class="icon"><use href="#i-sparkle"/></svg>AI 檢查
+          </button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <!-- 左側欄：頁面縮圖 -->
+        <aside class="sidebar" aria-label="頁面">
+          <div class="page-list" id="pageList"></div>
+          <button class="add-page" id="btnAddPage" aria-label="新增頁面" title="新增頁面">
+            <svg class="icon"><use href="#i-plus"/></svg>
+          </button>
+        </aside>
+
+        <!-- 主畫布 -->
+        <main class="stage" id="stage">
+          <div class="paper" id="paper" data-paper="grid" data-tool="pen">
+            <!-- 筆跡層（與格線背景分開，橡皮擦不會擦到格線） -->
+            <canvas id="ink" aria-label="手寫筆記畫布"></canvas>
+            <!-- AI 標註層（跟著畫布平移/縮放） -->
+            <div class="world" id="world"><div class="anno" id="anno"></div></div>
+            <!-- 錯誤步驟 → 提示卡片的虛線箭頭 -->
+            <svg class="arrow-layer" id="arrowLayer" aria-hidden="true">
+              <path class="arrow-path" id="arrowPath" d=""/>
+              <circle class="arrow-dot" id="arrowDot" r="4.5" cx="-20" cy="-20"/>
+            </svg>
+            <div class="eraser-cursor" id="eraserCursor"></div>
+          </div>
+
+          <!-- 浮動工具列 -->
+          <div class="toolbar-wrap" id="toolbarWrap">
+            <div class="toolbar" role="toolbar" aria-label="筆記工具">
+              <button class="tool-btn" data-tool="pen" aria-label="畫筆" title="畫筆 (P)"><svg class="icon"><use href="#i-pen"/></svg></button>
+              <button class="tool-btn" data-tool="eraser" aria-label="橡皮擦" title="橡皮擦 (E)"><svg class="icon"><use href="#i-eraser"/></svg></button>
+
+              <span class="tb-sep"></span>
+
+              <!-- 畫筆 6 色：刻意不提供紅色（紅色保留給 AI 標註） -->
+              <div class="swatches" role="radiogroup" aria-label="畫筆顏色">
+                <button class="swatch" data-color="0" style="--c:#1E2340" aria-label="墨黑" title="墨黑 (1)"><i></i></button>
+                <button class="swatch" data-color="1" style="--c:#2F5BEA" aria-label="藍" title="藍 (2)"><i></i></button>
+                <button class="swatch" data-color="2" style="--c:#15965A" aria-label="綠" title="綠 (3)"><i></i></button>
+                <button class="swatch" data-color="3" style="--c:#E07A1F" aria-label="橘" title="橘 (4)"><i></i></button>
+                <button class="swatch" data-color="4" style="--c:#7C4DDB" aria-label="紫" title="紫 (5)"><i></i></button>
+                <button class="swatch" data-color="5" style="--c:#0E8C99" aria-label="青" title="青 (6)"><i></i></button>
+              </div>
+
+              <span class="tb-sep"></span>
+
+              <div class="sizes" role="radiogroup" aria-label="粗細">
+                <button class="size-btn" data-size="0" aria-label="細" title="細"><i></i></button>
+                <button class="size-btn" data-size="1" aria-label="中" title="中"><i></i></button>
+                <button class="size-btn" data-size="2" aria-label="粗" title="粗"><i></i></button>
+              </div>
+
+              <span class="tb-sep"></span>
+
+              <button class="tool-btn" id="btnUndo" aria-label="復原" title="復原 (Ctrl+Z)"><svg class="icon"><use href="#i-undo"/></svg></button>
+              <button class="tool-btn" id="btnRedo" aria-label="重做" title="重做 (Ctrl+Shift+Z)"><svg class="icon"><use href="#i-redo"/></svg></button>
+            </div>
+
+            <!-- 第二層：橡皮擦模式（選橡皮擦時才出現） -->
+            <div class="eraser-menu" id="eraserMenu" role="radiogroup" aria-label="橡皮擦模式">
+              <button data-erase="stroke">整筆擦除</button>
+              <button data-erase="partial">局部擦除</button>
+            </div>
+          </div>
+
+          <!-- 底部左：紙張樣式 -->
+          <div class="paper-switch float-pill" role="radiogroup" aria-label="紙張樣式">
+            <span class="ps-label">紙張</span>
+            <button data-paper="grid"><i class="ps-swatch ps-grid"></i>方格</button>
+            <button data-paper="lines"><i class="ps-swatch ps-lines"></i>橫線</button>
+            <button data-paper="blank"><i class="ps-swatch ps-blank"></i>空白</button>
+          </div>
+
+          <!-- 底部右：縮放 -->
+          <div class="zoom-ctrl float-pill">
+            <button id="zoomOut" aria-label="縮小"><svg class="icon"><use href="#i-minus"/></svg></button>
+            <button id="zoomReset" class="zoom-val" title="回到 100%">100%</button>
+            <button id="zoomIn" aria-label="放大"><svg class="icon"><use href="#i-plus"/></svg></button>
+          </div>
+
+          <!-- 畫面四：右側浮動提示卡片（內容由 script.js 產生） -->
+          <aside class="result-card" id="resultCard" aria-live="polite"></aside>
+        </main>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         畫面五：學習分析
+         ============================================================ -->
+    <section class="view view-analysis" id="viewAnalysis" hidden>
+      <header class="topbar analysis-bar">
+        <div class="topbar-left">
+          <button class="btn-back" id="btnBack" aria-label="返回筆記"><svg class="icon"><use href="#i-chev-left"/></svg></button>
+          <h1 class="page-title">學習分析</h1>
+          <span class="tag-sample" title="目前數字為示意用，非真實資料">範例資料</span>
+        </div>
+        <div class="seg" id="rangeTabs" role="tablist" aria-label="時間範圍">
+          <button role="tab" data-range="week">本週</button>
+          <button role="tab" data-range="month">本月</button>
+          <button role="tab" data-range="all">全部</button>
+        </div>
+      </header>
+
+      <div class="analysis-body">
+        <div class="stats" id="stats">
+          <div class="stat-card"><div class="stat-label"></div><div class="stat-value"><b></b><span></span></div></div>
+          <div class="stat-card"><div class="stat-label"></div><div class="stat-value"><b></b><span></span></div></div>
+          <div class="stat-card"><div class="stat-label"></div><div class="stat-value"><b></b><span></span></div></div>
+          <div class="stat-card"><div class="stat-label"></div><div class="stat-value"><b></b><span></span></div></div>
+        </div>
+
+        <div class="a-row">
+          <section class="card">
+            <div class="card-head"><h3>最常錯的步驟</h3><span class="card-unit">次數</span></div>
+            <ul class="bars" id="bars"></ul>
+          </section>
+          <section class="card">
+            <div class="card-head"><h3 id="chartTitle">每日正確率</h3><span class="card-unit">%</span></div>
+            <div class="line-chart" id="lineChart"></div>
+          </section>
+        </div>
+
+        <div class="a-row">
+          <section class="card card-dark">
+            <div class="advice-head">
+              <span class="advice-icon"><svg class="icon"><use href="#i-sparkle"/></svg></span>
+              <h3>AI 給你的建議</h3>
+            </div>
+            <p class="advice-text">你最常在「移項」這一步忘記變號。下次移項後，先在旁邊小小寫一個「＋ → －」提醒自己，再繼續往下算。</p>
+            <button class="btn btn-light" id="btnPractice">練習 5 題移項題目</button>
+          </section>
+          <section class="card">
+            <div class="card-head"><h3>最近的錯題</h3></div>
+            <ul class="mistakes">
+              <li>
+                <span class="m-expr">2x + 3 = 7</span>
+                <span class="m-right"><span class="chip chip-red">移項變號</span><button class="link" data-retry="ex3">再做一次</button></span>
+              </li>
+              <li>
+                <span class="m-expr">4(x + 1) = 20</span>
+                <span class="m-right"><span class="chip chip-indigo">分配律</span><button class="link" data-retry="other">再做一次</button></span>
+              </li>
+              <li>
+                <span class="m-expr">5x − 8 = 3x + 4</span>
+                <span class="m-right"><span class="chip chip-red">移項變號</span><button class="link" data-retry="other">再做一次</button></span>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================
+       畫面二：框選模式（整頁變暗，只有選取框內清楚可見）
+       ============================================================ -->
+  <div class="select-layer" id="selectLayer">
+    <div class="select-dim" id="selectDim"></div>
+    <div class="select-box" id="selectBox" hidden>
+      <span class="sel-label" id="selLabel"><svg class="icon"><use href="#i-check"/></svg><span id="selLabelText">已選取 4 行算式</span></span>
+      <span class="sel-handle" data-h="nw"></span>
+      <span class="sel-handle" data-h="ne"></span>
+      <span class="sel-handle" data-h="sw"></span>
+      <span class="sel-handle" data-h="se"></span>
+    </div>
+
+    <div class="select-guide">
+      <span class="guide-icon"><svg class="icon"><use href="#i-scan"/></svg></span>
+      <div>
+        <div class="guide-title">拖曳框住要檢查的算式</div>
+        <div class="guide-desc">框外的筆記不會被讀取，可拖曳四個角調整大小</div>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="btnSelectCancel">取消</button>
+    </div>
+
+    <div class="select-actions" id="selectActions" hidden>
+      <button class="btn btn-soft btn-sm" id="btnReselect">重新框選</button>
+      <button class="btn btn-primary btn-sm" id="btnSelectGo"><svg class="icon"><use href="#i-sparkle"/></svg>開始檢查</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       畫面三：確認算式（右側滑出面板）
+       ============================================================ -->
+  <div class="confirm-layer" id="confirmLayer">
+    <div class="confirm-scrim"></div>
+    <aside class="confirm-panel" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <div class="confirm-body">
+        <ol class="stepper" id="stepper">
+          <li class="st" data-step="1"><span class="st-num"><svg class="icon"><use href="#i-check"/></svg><em>1</em></span>框選</li>
+          <li class="st-line"></li>
+          <li class="st" data-step="2"><span class="st-num"><svg class="icon"><use href="#i-check"/></svg><em>2</em></span>確認算式</li>
+          <li class="st-line"></li>
+          <li class="st" data-step="3"><span class="st-num"><svg class="icon"><use href="#i-check"/></svg><em>3</em><i class="spin"></i></span>AI 檢查</li>
+        </ol>
+
+        <h2 id="confirmTitle">AI 讀到的算式是這樣嗎？</h2>
+        <p class="confirm-desc">對照你的手寫，有讀錯的地方直接點擊修改，避免把辨識錯誤當成計算錯誤。</p>
+
+        <div class="field-label">你的手寫</div>
+        <div class="hand-preview"><canvas id="previewCanvas"></canvas></div>
+
+        <div class="field-label">AI 辨識結果</div>
+        <div class="ocr-list" id="ocrList"></div>
+
+        <div class="unit-row">
+          <span>單元：<b id="unitName">一元一次方程式</b><span id="unitHint">（自動判斷）</span></span>
+          <button class="link" id="btnUnitChange" aria-haspopup="true" aria-expanded="false">更改</button>
+          <div class="unit-menu" id="unitMenu" hidden>
+            <button data-unit="一元一次方程式">一元一次方程式</button>
+            <button data-unit="一元二次方程式">一元二次方程式</button>
+            <button data-unit="二元一次聯立方程式">二元一次聯立方程式</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm-footer">
+        <button class="btn btn-secondary" id="btnConfirmReselect">重新框選</button>
+        <button class="btn btn-primary btn-block" id="btnStartCheck"><svg class="icon"><use href="#i-sparkle"/></svg><span>正確，開始檢查</span></button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
